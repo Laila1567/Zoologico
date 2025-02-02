@@ -1,4 +1,4 @@
-package zoologico;
+package lailabd;
 
 public class DaoFuncionario implements DAO {
 	Funcionario f;
