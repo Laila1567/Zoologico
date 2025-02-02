@@ -1,4 +1,4 @@
-package zoologico;
+package lailabd;
 
 public interface DAO {
 	public void gravar();
