@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "zoologico-f3e09",
+  "private_key_id": "a652aab3158431d80dd5b083a2409655e075e6b7",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDAmp4Y0gtPkiGH\n5I2FZGu97UfDht9U4wexzIubdlkre11UmJVgpdbNnk/FaZaYjSm32SSywOO9tfSg\nYOf1qNvcZ6AMnI+nE8DeyGXv67+9NFYnk5dOW8a4wH9GbzU0C90X3AR+GhObpBTZ\na6ynGv2WI+UEVWO4aQl0lcY27tp1hQfeZ/OI4LHIchJmcpGlaDJ38zEIJfekTtQ7\nsMD8CGE2s28FsvhpYdqjK+WFjp9rxDLazGv+nyORFCfxofNLTNyTv1GYwNSjWnxQ\nbbqpqyuHnkg33gxbqSlbKEt279EYu4NPIBuzQfdid9oIjMI5xjkFb0KfxejYY4Mv\n1T+tYWvpAgMBAAECggEASowN4SF7S0MOQ2DM/fJOWWa7vgw36M0urzyyVGvMO642\nA4ZDWvMVXuSFj608orMQkJ41PBK4kzcYBfM8FLNU1cwuAHOgjlRw9EmwWtpujjbx\nmcPgbm3LTrsDCCoG96wX2SJJgt1o9XbeswCgBNXHjRM7kx/RxxCwnjVSUPTGDXHS\nHlIhcNglKjthOIBR1NoE80uFL9U+HE0EfSmZnxlf+orX5RBdFFUuEnSw2/UyVnBc\nbkHbkYfvlgKabfF9U2nBKLLo+4ZNn5dBeWcS6iE5qiQi90x/Pf/uCAu1AmTWmmby\n2EXrlHrqrf+P7D16j/qWmA0ulCLTuZYLSuvby+jP2QKBgQDhhZjhFTYqJjKyUI7+\nkQoKdx2DfvTDkzuvwy0ZY/MjSZoQD6LFhbHXDceTtZGRgCDAk/BcQ1hIMkznPTnt\nWdyKSnE9QAOUDxDWCl8hQkCh5fAUkHva7f8hwJhqTAqUkDiUFeTZsCuxbgLFaw9y\nZZAlxcJt8fj7GPs6+bZ5h2F6owKBgQDaoigmD7JM/ncMuYeCeeCM1O27oZdG50gO\n6XIWE7P2QHkU2Dpc3bsCrc6y5LJ9ZzNvD6wa1tVopF9g/pCkTTTu0AQBbeuGE1ca\nEMOw/Mzbv524VQ5xL6pu3i7IDpkr1AGKC+jYlZnsz5kXKRJD7PIg3edW2wo6/VXy\nGDchJHrUAwKBgEYG8+fAbGc+ITPZa+2EH/gL8LAqNdqc10XGdzSRIqhsbFhcYpCu\n6P/8GWK2WJMzk/f4eAROLRWN+O88xcX7x01xvCPmwrWwz+uGoO904Rjki133V14t\n1LEoWqt3HTnwZoElI0CtQYQAwv+GNO+ytcXk2HDHWCawJSK084JdFVm9AoGAHB9r\npqmyN7ErwxlCUwg2WCczhUUd3mL1o+VnZWuXZH+ak5HUwAlNeuS8h8pfIz5ZIVoU\nu0cTIGi0VBeqp1e/DVD4ku5+szpdo96wLV33Q/T75rAaMXj+JVCzF8y46yhUIlux\n0do8eHejq5T+4nniE1Q347Y9NKVNntx6iurUWd0CgYEAlCZdhwNsIGauWZNSpTDL\ngDCiND4tTy4OT5B7O/+UZLfdv42Kerl/krCuzCoBlXFKaK8PpOQ4PZOwlp/DjqEb\nJ6ZLb3rE1X11AL+m78wY2N3ola3FHWFJq0fc+xzzfTlQavfCf2Gy3b5KGxCiioem\nkNJ2wXGxOgitijlLBGU1FTk=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-fbsvc@zoologico-f3e09.iam.gserviceaccount.com",
+  "client_id": "103134328182948844336",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fbsvc%40zoologico-f3e09.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
