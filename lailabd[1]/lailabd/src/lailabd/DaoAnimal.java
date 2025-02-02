@@ -1,4 +1,4 @@
-package zoologico;
+package lailabd;
 
 public class DaoAnimal implements DAO {
 	Animal a;
