@@ -4,222 +4,222 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
-import com.google.cloud.firestore.QuerySnapshot;
 import com.google.cloud.firestore.WriteResult;
 import com.google.firebase.cloud.FirestoreClient;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 
-public class FuncionarioMethods {
+public class FuncionariosMethods {
 
-    // Método para cadastrar um funcionário no Firebase
-    public static void cadastrarFuncionario() {
-        Funcionario f = new Funcionario();
-        Scanner leia = new Scanner(System.in);
-        DaoFuncionario dao = new DaoFuncionario();
 
-        System.out.print("ID: ");
-        f.setCodFuncionario(leia.nextInt());
-        leia.nextLine();
+	public static void cadastrarFuncionario() {
+		// TODO Auto-generated method stub
+		Funcionario f = new Funcionario();
+		@SuppressWarnings("resource")
+		Scanner leia = new Scanner(System.in);
 
-        System.out.print("Nome: ");
-        f.setNome(leia.nextLine());
+		DaoFuncionario dao = new DaoFuncionario();
+		System.out.println("Codigo:");
+		f.setCodFuncionario(leia.nextInt());
+		leia.nextLine();
 
-        System.out.print("CPF: ");
-        f.setCpf(leia.nextLine());
+		System.out.println("Nome:");
+		f.setNome(leia.nextLine());
 
-        System.out.print("Funcao: ");
-        f.setFuncao(leia.nextLine());
+		System.out.println("Funcâo:");
+		f.setFuncao(leia.nextLine());
 
-        System.out.print("Telefone: ");
-        f.setTelefone(null);leia.nextDouble();
-        leia.nextLine();
+		System.out.println("Turno:");
+		f.setTurno(leia.nextLine());
 
-        System.out.print("Turno: ");
-        f.setTurno(leia.nextLine());
+		System.out.println("CPF:");
+		f.setCpf(leia.nextInt());
 
-        dao.setF(f);
-        dao.gravar();
+		System.out.println("Telefone:");
+		f.setTelefone(null);leia.nextDouble();
 
-        Map<String, Object> dados = new HashMap<>();
-        dados.put("ID", f.getCodFuncionario());
-        dados.put("Nome", f.getNome());
-        dados.put("Funcao", f.getFuncao());
-        dados.put("Telefone", f.getTelefone());
-        dados.put("Turno", f.getTurno());
+		Map<String, Object> dados = new HashMap<>();
+		dados.put("Codigo", f.getCodFuncionario());
+		dados.put("Nome", f.getNome());
+		dados.put("Função", f.getFuncao());
+		dados.put("Turno", f.getTurno());
+		dados.put("CPF", f.getCpf());
+		dados.put("Telefone", f.getTelefone());
 
-        Firestore db = Conexao.initializeFirebase();
-        if (db != null) {
-            db.collection("funcionarios").document(String.valueOf(f.getCodFuncionario())).set(dados);
-            System.out.println("Funcionário cadastrado no Firestore!");
-        } else {
-            System.out.println("Erro ao conectar com Firestore.");
-        }
-    }
+		Firestore db = Conexao.initializeFirebase();
+		if (db != null) {
+			db.collection("funcionarios").document(String.valueOf(f.getCodFuncionario())).set(dados);
+			System.out.println("Funcionario cadastrado no Firestore!");
+		} else {
+			System.out.println("Erro ao conectar com Firestore.");
+		}
+	}
 
-    // Método para buscar um funcionário no Firebase
-    public static void buscarFuncionario() {
-        Firestore db = Conexao.initializeFirebase();
-        if (db == null) {
-            System.out.println("Erro ao conectar ao Firestore!");
-            return;
-        }
 
-        Scanner leia = new Scanner(System.in);
-        System.out.println("Digite o ID do funcionário: ");
-        
-        int idFuncionario;
-        try {
-            idFuncionario = Integer.parseInt(leia.nextLine());
-        } catch (NumberFormatException e) {
-            System.out.println("ID inválido! Digite um número.");
-            return;
-        }
+	//********************************************************************************************************************//
+	//********************************************************************************************************************//
 
-        String documentoId = String.valueOf(idFuncionario);
-        String colecao = "funcionarios";
 
-        Map<String, Object> dados = buscarDocumento(colecao, documentoId);
 
-        if (dados == null) {
-            System.out.println("Registro não encontrado!");
-        } else {
-            System.out.println("\n=== Dados do funcionário ===");
-            dados.forEach((chave, valor) -> System.out.println(chave + ": " + valor));
-        }
-    }
 
-    public static Map<String, Object> buscarDocumento(String colecao, String documentoId) {
-        Firestore db = FirestoreClient.getFirestore();
+	public static void buscarFuncionario() {
+		// TODO Auto-generated method stub
 
-        if (db == null) {
-            System.out.println("Erro: Firestore não foi inicializado corretamente!");
-            return null;
-        }
+		Firestore db = Conexao.initializeFirebase();
+		if (db == null) {
+			System.out.println("Erro ao conectar ao Firestore!");
+			return;
+		}
 
-        try {
-            DocumentSnapshot document = db.collection(colecao).document(documentoId).get().get();
-            if (document.exists()) {
-                return document.getData();
-            } else {
-                System.out.println("Documento não encontrado.");
-                return null;
-            }
-        } catch (InterruptedException | ExecutionException e) {
-            System.out.println("Erro ao buscar documento: " + e.getMessage());
-            return null;
-        }
-    }
+		Scanner leia = new Scanner(System.in);
+		System.out.println("Digite o código referente ao funcionario: ");
 
-    // Método para atualizar dados de um funcionário
-    public static void atualizarFuncionario() {
-        Scanner leia = new Scanner(System.in);
+		int codFuncionario;
+		try {
+			codFuncionario = Integer.parseInt(leia.nextLine()); // Evita erro do nextInt()
+		} catch (NumberFormatException e) {
+			System.out.println("Código inválido! Digite um número.");
+			return;
+		}
 
-        System.out.println("ID do funcionário:");
-        int idFuncionario = leia.nextInt();
-        leia.nextLine();
+		String documentoId = String.valueOf(codFuncionario);
+		String colecao = "funcionarios";
 
-        System.out.println("Novo salário:");
-        double novoSalario = leia.nextDouble();
-        leia.nextLine();
+		Map<String, Object> dados = buscarDocumento(colecao, documentoId);
 
-        System.out.println("Novo turno:");
-        String novoTurno = leia.nextLine();
+		if (dados == null) {
+			System.out.println("Registro não encontrado!");
+		} else {
+			System.out.println("\n=== Dados do funcionario ===");
+			dados.forEach((chave, valor) -> System.out.println(chave + ": " + valor));
+		}
+	}
 
-        Map<String, Object> novosDados = new HashMap<>();
-        novosDados.put("Salario", novoSalario);
-        novosDados.put("Turno", novoTurno);
+	//********************************************************************************************************************//
+	//********************************************************************************************************************//
 
-        String documentoId = String.valueOf(idFuncionario);
-        String colecao = "funcionarios";
+	public static Map<String, Object> buscarDocumento(String colecao, String documentoId) {
+		Firestore db = FirestoreClient.getFirestore();
 
-        Firestore db = Conexao.initializeFirebase();
-        DocumentReference docRef = db.collection(colecao).document(documentoId);
-        ApiFuture<WriteResult> resultado = docRef.update(novosDados);
-        try {
-            System.out.println("Documento atualizado em: " + resultado.get().getUpdateTime());
-        } catch (Exception e) {
-            System.err.println("Erro ao atualizar documento: " + e.getMessage());
-        }
-    }
+		if (db == null) {
+			System.out.println("Erro: Firestore não foi inicializado corretamente!");
+			return null;
+		}
 
-    // Método para deletar um funcionário
-    public static void deletarFuncionario() {
-        Firestore db = Conexao.initializeFirebase();
-        Scanner leia = new Scanner(System.in);
+		try {
+			DocumentSnapshot document = db.collection(colecao).document(documentoId).get().get();
+			if (document.exists()) {
+				return document.getData(); // Retorna os dados do documento
+			} else {
+				System.out.println("Documento não encontrado.");
+				return null;
+			}
+		} catch (InterruptedException | ExecutionException e) {
+			System.out.println("Erro ao buscar documento: " + e.getMessage());
+			return null;
+		}
+	}
+	public static void atualizarFuncionario() {
+		// TODO Auto-generated method stub
+		Funcionario f = new Funcionario();
+		@SuppressWarnings("resource")
+		Scanner leia = new Scanner(System.in);
+		DaoFuncionario dao = new DaoFuncionario();
 
-        System.out.println("Qual é o ID do funcionário: ");
-        int idFuncionario = leia.nextInt();
+		System.out.println("Codigo do funcionario:");
+		int codFuncionario = leia.nextInt();
 
-        String documentoId = String.valueOf(idFuncionario);
-        String colecao = "funcionarios";
 
-        if (!documentoExiste(colecao, documentoId)) {
-            System.out.println("Registro não encontrado!");
-            return;
-        }
+		System.out.println("Funcâo:");
+		f.setFuncao(leia.nextLine());
+		leia.nextLine();
 
-        deletarDocumentoFuncionario(colecao, documentoId);
-        System.out.println("Registro excluído com sucesso!");
-    }
+		System.out.println("Turno:");
+		f.setTurno(leia.nextLine());
 
-    public static void deletarDocumentoFuncionario(String colecao, String documentoId) {
-        Firestore db = Conexao.initializeFirebase();
-        DocumentReference docRef = db.collection(colecao).document(documentoId);
-        ApiFuture<WriteResult> resultado = docRef.delete();
-        try {
-            System.out.println("Documento deletado em: " + resultado.get().getUpdateTime());
-        } catch (Exception e) {
-            System.err.println("Erro ao deletar documento: " + e.getMessage());
-        }
-    }
+		System.out.println("Telefone:");
+		f.setTelefone(leia.nextLine());
 
-    public static boolean documentoExiste(String colecao, String documentoId) {
-        Firestore db = FirestoreClient.getFirestore();
-        try {
-            DocumentSnapshot document = db.collection(colecao).document(documentoId).get().get();
-            return document.exists();
-        } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-    // Método para listar todos os funcionários
-public static void listarFuncionarios() {
-    Firestore db = Conexao.initializeFirebase();
-    if (db == null) {
-        System.out.println("Erro ao conectar ao Firestore!");
-        return;
-    }
+		Map<String, Object> novosDados = new HashMap<>();
+		novosDados.put("Função", f.getFuncao());
+		novosDados.put("Turno", f.getTurno());
+		novosDados.put("Telefone", f.getTelefone());
 
-    String colecao = "funcionarios";
-    
-    try {
-        // Recuperando todos os documentos da coleção
-        ApiFuture<QuerySnapshot> future = db.collection(colecao).get();
-        QuerySnapshot querySnapshot = future.get();
-        
-        if (querySnapshot.isEmpty()) {
-            System.out.println("Não há funcionários cadastrados.");
-            return;
-        }
-        
-        System.out.println("\n=== Lista de Funcionários ===");
-        
-        // Iterando sobre cada documento da coleção e imprimindo seus dados
-        for (DocumentSnapshot document : querySnapshot.getDocuments()) {
-            System.out.println("\nID: " + document.getId());
-            document.getData().forEach((chave, valor) -> {
-                System.out.println(chave + ": " + valor);
-            });
-            System.out.println("-------------------------------");
-        }
-    } catch (InterruptedException | ExecutionException e) {
-        System.out.println("Erro ao listar documentos: " + e.getMessage());
-    }
-}
+		String documentoId = String.valueOf(codFuncionario);
+		String colecao = "funcionarios";
+
+		// Salvar no Firestore
+		Firestore db = Conexao.initializeFirebase();
+
+		DocumentReference docRef = db.collection(colecao).document(documentoId);
+		ApiFuture<WriteResult> resultado = docRef.update(novosDados);
+		try {
+			System.out.println("Documento atualizado em: " + resultado.get().getUpdateTime());
+		} catch (Exception e) {
+			System.err.println("Erro ao atualizar documento: " + e.getMessage());
+		}
+
+		System.out.println("Dados atualizados com sucesso!");
+	}
+	public static void deletarFuncionario() {
+		// TODO Auto-generated method stub
+		Firestore db = Conexao.initializeFirebase();
+		Funcionario f = new Funcionario();
+
+		@SuppressWarnings("resource")
+
+		Scanner leia = new Scanner(System.in);
+		DaoFuncionario dao = new DaoFuncionario();
+
+		System.out.println("Qual é o Codigo do Funcionario: ");
+		int codFuncionario = leia.nextInt();
+		f.setCodFuncionario(codFuncionario);
+
+		String documentoId = String.valueOf(codFuncionario);
+		String colecao = "funcionarios";
+
+		if (!documentoExiste(colecao, documentoId)) {
+			System.out.println("Registro não encontrado!");
+			return;
+		}
+
+		deletarDocumentoFuncionario(colecao, documentoId);
+		System.out.println("Registro excluído com sucesso!");
+
+
+	}
+	//********************************************************************************************************************//
+	//********************************************************************************************************************//
+
+	public static void deletarDocumentoFuncionario(String colecao, String documentoId) {
+		Firestore db = Conexao.initializeFirebase();
+
+		DocumentReference docRef = db.collection(colecao).document(documentoId);
+		ApiFuture<WriteResult> resultado = docRef.delete();
+		try {
+			System.out.println("Documento deletado em: " + resultado.get().getUpdateTime());
+		} catch (Exception e) {
+			System.err.println("Erro ao deletar documento: " + e.getMessage());
+		}
+	}
+	//********************************************************************************************************************//
+	//********************************************************************************************************************//
+
+	public static boolean documentoExiste(String colecao, String documentoId) {
+		Firestore db = FirestoreClient.getFirestore();
+		try {
+
+			DocumentSnapshot document = db.collection(colecao).document(documentoId).get().get();
+			return document.exists();
+		} catch (InterruptedException | ExecutionException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 
 }
