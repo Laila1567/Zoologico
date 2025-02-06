@@ -14,6 +14,7 @@ import java.util.concurrent.ExecutionException;
 public class Menu {
 
 	public static void main(String[] args) {
+		// TODO Auto-generated method stub
 		@SuppressWarnings("resource")
 		Scanner leia = new Scanner(System.in);
 		int escolha;
@@ -61,26 +62,22 @@ public class Menu {
 			}
 			break;
 			case 2:{
-				//listarAnimal();
+				AnimalsMethods.buscarAnimal();
 			}
 			break;
 			case 3:{
-				AnimalsMethods.buscarAnimal();
+				AnimalsMethods.atualizarAnimal();
 
 			}
 			break;
 			case 4: {
-				AnimalsMethods.atualizarAnimal();
-			}
-			break;
-			case 5: {
 				AnimalsMethods.deletarAnimal();
 			}
 			break;
-			case 6:
+			case 5:
 				break;
 			}
-		}while(escolha != 6);
+		}while(escolha != 5);
 	}
 
 
@@ -99,27 +96,26 @@ public class Menu {
 			}
 			break;
 			case 2:{
-				JaulaMethods.listarJaulas();
-			}
-			break;
-			case 3:{
 				JaulaMethods.buscarJaula();
 
 			}
 			break;
-			case 4: {
+			case 3: {
 				JaulaMethods.atualizarJaula();
 			}
 			break;
-			case 5: {
+			case 4: {
 				JaulaMethods.deletarJaula();
 			}
 			break;
-			case 6:
+			case 5:
 				break;
 			}
-		}while(escolha != 6);
+		}while(escolha != 5);
 	}
+
+
+	
 
 	private static void funcionario() {
 		// TODO Auto-generated method stub
@@ -130,55 +126,52 @@ public class Menu {
 			escolha = leia.nextInt();
 			switch (escolha){
 			case 1:{
-				FuncionarioMethods.cadastrarFuncionario();
+				FuncionariosMethods.cadastrarFuncionario();
 			}
 			break;
 			case 2:{
-				FuncionarioMethods.listarFuncionarios();
+				FuncionariosMethods.buscarFuncionario();
 			}
 			break;
 			case 3:{
-				FuncionarioMethods.buscarFuncionario();
+				FuncionariosMethods.atualizarFuncionario();
 
 			}
 			break;
 			case 4: {
-				FuncionarioMethods.atualizarFuncionario();
+				FuncionariosMethods.deletarFuncionario();
 			}
 			break;
 			case 5: {
-				FuncionarioMethods.deletarFuncionario();
 			}
 			break;
-			case 6:
-				break;
 			}
-		}while(escolha != 6);
+		}while(escolha != 5);
 	}
 
-	private static void menu3() {
-		// TODO Auto-generated method stub
+	
 
-	}
-	private static void menu() {
-		System.out.println(" escolha uma opção: ");
-		System.out.println("1-Funcionario\n"
-				+ "2-Jaulas\n"
-				+ "3-Animais\n"
-				+ "4-Sair\n"
-				+ "Opção: ");
-	}
 
-	private static void menu2() {
-		System.out.println(" escolha uma opção: ");
-		System.out.println("1-Castratar\n"
-				+ "2-Listar\n"
-				+ "3-Buscar\n"
-				+ "4-Atualizar\n"
-				+ "5-deletar\n"
-				+ "6-voltar\n"
-				+ "Opção: ");
-	}
+private static void menu() {
+	// TODO Auto-generated method stub
+	System.out.println(" escolha uma opção: ");
+	System.out.println("1-Funcionario\n"
+			+ "2-Jaulas\n"
+			+ "3-Animais\n"
+			+ "4-Sair\n"
+			+ "Opção: ");
+}
+
+private static void menu2() {
+	// TODO Auto-generated method stub
+	System.out.println(" escolha uma opção: ");
+	System.out.println("1-Castratar\n"
+			+ "2-Buscar\n"
+			+ "3-Atualizar\n"
+			+ "4-deletar\n"
+			+ "5-voltar\n"
+			+ "Opção: ");
+}
 
 
 }
